@@ -3,7 +3,7 @@
 ## 專案簡介
 
 使用 C# ASP.NET Core 8 與 SQL Server 進行 CRUD 操作的後端 API。
-專案包含兩個主要的資料表：Myoffice_ACPD（使用者資料表）和 MyOffice_ExcuteionLog（執行日誌表）。
+專案包含兩個主要的資料表：Myoffice_ACPD（使用者資料表）和 Myoffice_ExcuteionLog（執行日誌表）。
 每次進行資料操作時，都會記錄操作日誌。API 支援透過 JSON 來處理資料傳輸。
 
 ## 使用工具套建
@@ -26,13 +26,13 @@ SQL Server Management Studio (SSMS)
 ## 實作思路
 
 1. 建立資料庫與資料表
-   根據需求和文件，首先在 SQL Server 中創建 BackendExamHub 資料庫，並創建 Myoffice_ACPD 和 MyOffice_ExcuteionLog 資料表來存儲使用者資料和執行日誌。
+   根據需求和文件，首先在 SQL Server 中創建 BackendExamHub 資料庫，並創建 Myoffice_ACPD 和 Myoffice_ExcuteionLog 資料表來存儲使用者資料和執行日誌。
    每個表的結構基於文件中提供的資料表定義 ​(水星工程資料表)。
 2. 實作 CRUD 操作
    使用 Entity Framework Core 來與 SQL Server 進行連接。(在 python 裡跟 ORM(Object Relational Mapping) 一樣概念)
-   定義一個資料上下文 MyDbContext，其中包含表 Myoffice_ACPD 和日誌表的 DbSet。
+   定義一個資料上下文 DbContext，其中包含表 Myoffice_ACPD 和日誌表的 DbSet。
    每個 CRUD 操作都透過對 Myoffice_ACPD 的 API 呼叫實現，例如 GET、POST、PUT 和 DELETE。
-   為了確保每次操作都被記錄，CRUD 操作中的每次變動都會呼叫預存程序 usp_AddLog，記錄到 MyOffice_ExcuteionLog 表。
+   為了確保每次操作都被記錄，CRUD 操作中的每次變動都會呼叫預存程序 usp_AddLog，記錄到 Myoffice_ExcuteionLog 表。
 3. 使用 Stored Procedures
    為了提升靈活性，我們採用了兩個 Stored Procedure：NewSID 和 usp_AddLog。
    NewSID 用於產生全域唯一的 SID 值，並將其作為主鍵。
