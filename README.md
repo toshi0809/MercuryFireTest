@@ -1,5 +1,3 @@
-# 水星工程科技有限公司 - 後端工程師
-
 ## 專案簡介
 
 使用 C# ASP.NET Core 8 與 SQL Server 進行 CRUD 操作的後端 API。
